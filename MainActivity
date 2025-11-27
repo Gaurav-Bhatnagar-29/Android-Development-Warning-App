@@ -1,0 +1,50 @@
+package com.example.ca_1
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.*
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val name: EditText = findViewById(R.id.et1)
+        val reg: EditText = findViewById(R.id.et2)
+        val tot: EditText = findViewById(R.id.et3)
+        val clas: EditText = findViewById(R.id.et4)
+        val btn: Button = findViewById(R.id.btn)
+
+        btn.setOnClickListener {
+
+
+            val n = name.text.toString()
+            val r = reg.text.toString()
+            val t = tot.text.toString()
+            val c = clas.text.toString()
+            if(n.isEmpty()){
+                Toast.makeText(this,"Enter Name",Toast.LENGTH_SHORT).show()
+            }
+            else if(r.isEmpty()){
+                Toast.makeText(this,"Enter Registration Number",Toast.LENGTH_SHORT).show()
+            }
+            else if(t.isEmpty()){
+                Toast.makeText(this,"Enter Total Classes",Toast.LENGTH_SHORT).show()
+            }
+            else if(c.isEmpty()) {
+                Toast.makeText(this, "Enter Classes Attended", Toast.LENGTH_SHORT).show()
+            }
+            else{
+
+                val total = tot.text.toString().toInt()
+                val attended = clas.text.toString().toInt()
+                val attendancePercent = (attended.toFloat() / total) * 100
+                if (attendancePercent >= 75) {
+                    Toast.makeText(this,"Eligible",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this,"Not Eligible",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+}
